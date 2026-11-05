@@ -1,0 +1,268 @@
+{
+  "release": {
+    "date": "2026-09-10",
+    "id": "237",
+    "name": "VOGDB release 237",
+    "data_source": "NCBI Refseq release 237",
+    "url": "https://fileshare.csb.univie.ac.at/vog/vog237",
+    "license": "All data published are licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)",
+    "authors": "Lovro Trgovec-Greif, Hans-Joerg Hellinger, Jean Mainguy, Alexander Pfundner, Dmitrij Frishman, Michael Kiening, Nicole Webster, Patrick Laffy, Thomas Rattei",
+    "contact": "Thomas Rattei, Centre for Microbiology and Environmental Systems Science, University of Vienna, Austria, thomas.rattei@univie.ac.at",
+    "number_proteins": 724778,
+    "number_genomes": 15826
+  },
+  "groups": [
+    {
+      "name": "vfam",
+      "description": "Virus protein families (built from vogs by HMM-HMM clustering)",
+      "number": 40091,
+      "summary": "Number of VFAM: 40091 (Virus protein families)"
+    },
+    {
+      "name": "vog",
+      "description": "Virus orthologous groups (built from bidirectional sequence similarities)",
+      "number": 49128,
+      "summary": "Number of VOG: 49128 (Virus orthologous groups)"
+    },
+    {
+      "name": "vfold",
+      "description": "Virus protein structural folds (built from vfams by clustering of predicted 3D structures of representative proteins)",
+      "number": 33333,
+      "summary": "Number of VFOLD: 33333 (Virus protein structural folds)"
+    }
+  ],
+  "files": [
+    {
+      "name": "vog.raw_algs.alistat.txt",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vog.raw_algs.alistat.txt",
+      "description": "Statistics of multiple alignments according to minimum reporting standard for multiple sequence alignments (https://doi.org/10.1093/nargab/lqaa024).",
+      "md5sum": "5f6cb4b8eb2735e3533b6410225af7b1",
+      "bytes": 3307618,
+      "url_label": "vog.raw_algs.alistat.txt (Statistics of multiple alignments): 3,307,618 bytes, MD5 checksum 5f6cb4b8eb2735e3533b6410225af7b1"
+    },
+    {
+      "name": "vog.annotations.tsv.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vog.annotations.tsv.gz",
+      "description": "Tab separated file of groups and their consensus functional annotations (preferrably from Swissprot annotations, if not available then the annotations from RefSeq were used). Columns: GroupName|ProteinCount|SpeciesCount|FunctionalCategory|ConsensusFunctionalDescription",
+      "md5sum": "ed0b907ee2ccef495f6a1b1ca5e2870e",
+      "bytes": 374234,
+      "url_label": "vog.annotations.tsv.gz (Funcational annotations of groups): 374,234 bytes, MD5 checksum ed0b907ee2ccef495f6a1b1ca5e2870e"
+    },
+    {
+      "name": "vfam.members.tsv.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vfam.members.tsv.gz",
+      "description": "Tab separated file of VOGs and the comma separated lists of their member protein ids. Columns: GroupName|ProteinCount|SpeciesCount|FunctionalCategory|ProteinIDs",
+      "md5sum": "3384a9d7fd69b3f376af3d24b6d4c252",
+      "bytes": 4576398,
+      "url_label": "vfam.members.tsv.gz (Member protein ids of groups): 4,576,398 bytes, MD5 checksum 3384a9d7fd69b3f376af3d24b6d4c252"
+    },
+    {
+      "name": "vfam.virusonly.tsv.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vfam.virusonly.tsv.gz",
+      "description": "Tab separated file of VOGs and their specificic occurrence in virus genomes. For this purpose the homology of all member proteins to cellular genomes from eggNOG 4.5 have been determined with three different stringencies: High stringency: blastp e-Value <=1e-04 and hits in maximal 2 cellular genomes; Medium stringency: blastp e-Value <=1e-10 and hits in maximal 3 cellular genomes; Low stringency: blastp e-Value <=1e-15 and hits in maximal 4 cellular genomes; The column Only_in_viruses has been set true if members matched not more than the maximal number of genomes at the e-Value threshold for each stringency level. Columns: GroupName|Only in viruses (high stringency)|Only in viruses (medium stringency)|Only in viruses (low stringency) 1=True; 0=False. This file is useful to extract virus-specific markers from all VOGs, based on your preferred level of stringency.",
+      "md5sum": "4eab639b90f4b6f4ec6244cf3d682242",
+      "bytes": 105921,
+      "url_label": "vfam.virusonly.tsv.gz (Specificity if groups to Viruses): 105,921 bytes, MD5 checksum 4eab639b90f4b6f4ec6244cf3d682242"
+    },
+    {
+      "name": "vfam.lca.tsv.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vfam.lca.tsv.gz",
+      "description": "Tab separated file of VOGs and the taxonomic lineage of the last common aencestor (LCA) of member genomes. Genomes with unclassified taxonomic lineages have not been used for LCA determination, which can result in VOG without lca (if all proteins of a VOG are from unclassified lineages). The numbers of genomes per VOG and LCA, as well as the total numbers of genomes in the LCA are given. Columns: GroupName|GenomesInGroupAndLCA|GenomesTotalInLCA|LastCommonAncestor_TaxonName|LastCommonAncestor_TaxonID",
+      "md5sum": "086ba7ad4d8db86bd806e9262385eb46",
+      "bytes": 504485,
+      "url_label": "vfam.lca.tsv.gz (Last common aencestors of groups): 504,485 bytes, MD5 checksum 086ba7ad4d8db86bd806e9262385eb46"
+    },
+    {
+      "name": "vog.hmm.tar.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vog.hmm.tar.gz",
+      "description": "Compressed archive of the HMMER3 compatible Hidden Markov Models obtained from the multiple sequence alignments for each vogdb group.",
+      "md5sum": "920ee2d0b35736da470a401192904d39",
+      "bytes": 580866728,
+      "url_label": "vog.hmm.tar.gz (Hidden Markov Models of groups): 580,866,728 bytes, MD5 checksum 920ee2d0b35736da470a401192904d39"
+    },
+    {
+      "name": "vfam.annotations.tsv.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vfam.annotations.tsv.gz",
+      "description": "Tab separated file of groups and their consensus functional annotations (preferrably from Swissprot annotations, if not available then the annotations from RefSeq were used). Columns: GroupName|ProteinCount|SpeciesCount|FunctionalCategory|ConsensusFunctionalDescription",
+      "md5sum": "8e181711da0b4f9700567aeec20da0ca",
+      "bytes": 297258,
+      "url_label": "vfam.annotations.tsv.gz (Funcational annotations of groups): 297,258 bytes, MD5 checksum 8e181711da0b4f9700567aeec20da0ca"
+    },
+    {
+      "name": "vog.faa.tar.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vog.faa.tar.gz",
+      "description": "Compressed archive of FASTA formatted files of the proteins per vogdb group.",
+      "md5sum": "1ff76112fb7a769e4d84658876214b5a",
+      "bytes": 67016104,
+      "url_label": "vog.faa.tar.gz (Protein sequences of groups): 67,016,104 bytes, MD5 checksum 1ff76112fb7a769e4d84658876214b5a"
+    },
+    {
+      "name": "vogdb.host.txt",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vogdb.host.txt",
+      "description": "Tab separated file of host information and classification for virus taxa. Columns: taxon id|phage/nonphage|host|superkingdom of host.",
+      "md5sum": "7a058e734a1a5c015349ee86fab98aba",
+      "bytes": 489226,
+      "url_label": "vogdb.host.txt (Host information and classification for genomes): 489,226 bytes, MD5 checksum 7a058e734a1a5c015349ee86fab98aba"
+    },
+    {
+      "name": "vfold.faa.tar.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vfold.faa.tar.gz",
+      "description": "Compressed archive of FASTA formatted files of the proteins per vogdb group.",
+      "md5sum": "cb6757f17e36ef41959a70372770b5e0",
+      "bytes": 64886465,
+      "url_label": "vfold.faa.tar.gz (Protein sequences of groups): 64,886,465 bytes, MD5 checksum cb6757f17e36ef41959a70372770b5e0"
+    },
+    {
+      "name": "vfam.raw_algs.tar.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vfam.raw_algs.tar.gz",
+      "description": "Compressed archive of multiple sequence alignments for each VOGDB group.",
+      "md5sum": "be2cf83ca8d1f3d15e4f7c1e05126154",
+      "bytes": 63905008,
+      "url_label": "vfam.raw_algs.tar.gz (Multiple sequence alignments of groups): 63,905,008 bytes, MD5 checksum be2cf83ca8d1f3d15e4f7c1e05126154"
+    },
+    {
+      "name": "vog.members.tsv.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vog.members.tsv.gz",
+      "description": "Tab separated file of VOGs and the comma separated lists of their member protein ids. Columns: GroupName|ProteinCount|SpeciesCount|FunctionalCategory|ProteinIDs",
+      "md5sum": "a4375c97cce97b036d533353c9b69c36",
+      "bytes": 4671788,
+      "url_label": "vog.members.tsv.gz (Member protein ids of groups): 4,671,788 bytes, MD5 checksum a4375c97cce97b036d533353c9b69c36"
+    },
+    {
+      "name": "vfold.members.tsv.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vfold.members.tsv.gz",
+      "description": "Tab separated file of VOGs and the comma separated lists of their member protein ids. Columns: GroupName|ProteinCount|SpeciesCount|FunctionalCategory|ProteinIDs",
+      "md5sum": "e5b92dca10f18055621636a3298c7c2b",
+      "bytes": 4542947,
+      "url_label": "vfold.members.tsv.gz (Member protein ids of groups): 4,542,947 bytes, MD5 checksum e5b92dca10f18055621636a3298c7c2b"
+    },
+    {
+      "name": "vfam.hmm.tar.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vfam.hmm.tar.gz",
+      "description": "Compressed archive of the HMMER3 compatible Hidden Markov Models obtained from the multiple sequence alignments for each vogdb group.",
+      "md5sum": "6de3c8ec2dfab6039988ecfe4e0057bc",
+      "bytes": 468752192,
+      "url_label": "vfam.hmm.tar.gz (Hidden Markov Models of groups): 468,752,192 bytes, MD5 checksum 6de3c8ec2dfab6039988ecfe4e0057bc"
+    },
+    {
+      "name": "vfold.annotations.tsv.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vfold.annotations.tsv.gz",
+      "description": "Tab separated file of groups and their consensus functional annotations (preferrably from Swissprot annotations, if not available then the annotations from RefSeq were used). Columns: GroupName|ProteinCount|SpeciesCount|FunctionalCategory|ConsensusFunctionalDescription",
+      "md5sum": "4201e456ff8130a0f272f643ba19854e",
+      "bytes": 245135,
+      "url_label": "vfold.annotations.tsv.gz (Funcational annotations of groups): 245,135 bytes, MD5 checksum 4201e456ff8130a0f272f643ba19854e"
+    },
+    {
+      "name": "vfam.representatives.colabfold_predictions.tar.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vfam.representatives.colabfold_predictions.tar.gz",
+      "description": "Colabfold predictions of protein structures, represented by best ranked PDB and score files.",
+      "md5sum": "0a73195dfbe7bd40afeaffca1006cea7",
+      "bytes": 7926277974,
+      "url_label": "vfam.representatives.colabfold_predictions.tar.gz (Protein structure predictions): 7,926,277,974 bytes, MD5 checksum 0a73195dfbe7bd40afeaffca1006cea7"
+    },
+    {
+      "name": "vogdb.proteins.all.fa.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vogdb.proteins.all.fa.gz",
+      "description": "FASTA formatted file of all proteins from the genomes in vog.species.list. Protein IDs encode the taxonomy id of the genome and the RefSeq protein id. For peptides from polyproteins also the corresponding protein id of the polyprotein (CDS) is given.",
+      "md5sum": "2f9ba643daeaf9a86587c4ee32e0f2e5",
+      "bytes": 107562466,
+      "url_label": "vogdb.proteins.all.fa.gz (Protein sequences of all genomes): 107,562,466 bytes, MD5 checksum 2f9ba643daeaf9a86587c4ee32e0f2e5"
+    },
+    {
+      "name": "vogdb.genes.all.fa.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vogdb.genes.all.fa.gz",
+      "description": "FASTA formatted file of all gene sequences from the genomes in vog.species.list. Same IDs as in the protein file are used. For polyprotein genes the partial gene sequences of the peptides as well as the complete gene sequences of the polyprotein are contained.",
+      "md5sum": "b3491920d690b1520ddd0880cd07770c",
+      "bytes": 173110467,
+      "url_label": "vogdb.genes.all.fa.gz (Gene sequences of all genomes): 173,110,467 bytes, MD5 checksum b3491920d690b1520ddd0880cd07770c"
+    },
+    {
+      "name": "vfam.raw_algs.alistat.txt",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vfam.raw_algs.alistat.txt",
+      "description": "Statistics of multiple alignments according to minimum reporting standard for multiple sequence alignments (https://doi.org/10.1093/nargab/lqaa024).",
+      "md5sum": "625fe80e7d89528fd0a94e615524c5a7",
+      "bytes": 2743033,
+      "url_label": "vfam.raw_algs.alistat.txt (Statistics of multiple alignments): 2,743,033 bytes, MD5 checksum 625fe80e7d89528fd0a94e615524c5a7"
+    },
+    {
+      "name": "vfam.representatives.colabfold_mean_plddt.txt",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vfam.representatives.colabfold_mean_plddt.txt",
+      "description": "Mean pLDDT values for colabfold predictions of protein structures.",
+      "md5sum": "563e8debfb9c53c6666528314e38b337",
+      "bytes": 640416,
+      "url_label": "vfam.representatives.colabfold_mean_plddt.txt (Mean pLDDT values of protein structure predictions): 640,416 bytes, MD5 checksum 563e8debfb9c53c6666528314e38b337"
+    },
+    {
+      "name": "vog.virusonly.tsv.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vog.virusonly.tsv.gz",
+      "description": "Tab separated file of VOGs and their specificic occurrence in virus genomes. For this purpose the homology of all member proteins to cellular genomes from eggNOG 4.5 have been determined with three different stringencies: High stringency: blastp e-Value <=1e-04 and hits in maximal 2 cellular genomes; Medium stringency: blastp e-Value <=1e-10 and hits in maximal 3 cellular genomes; Low stringency: blastp e-Value <=1e-15 and hits in maximal 4 cellular genomes; The column Only_in_viruses has been set true if members matched not more than the maximal number of genomes at the e-Value threshold for each stringency level. Columns: GroupName|Only in viruses (high stringency)|Only in viruses (medium stringency)|Only in viruses (low stringency) 1=True; 0=False. This file is useful to extract virus-specific markers from all VOGs, based on your preferred level of stringency.",
+      "md5sum": "7d069a639eb0f58fa68842b280704db5",
+      "bytes": 127548,
+      "url_label": "vog.virusonly.tsv.gz (Specificity if groups to Viruses): 127,548 bytes, MD5 checksum 7d069a639eb0f58fa68842b280704db5"
+    },
+    {
+      "name": "vog.raw_algs.tar.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vog.raw_algs.tar.gz",
+      "description": "Compressed archive of multiple sequence alignments for each VOGDB group.",
+      "md5sum": "f4cfddfd8d202df73c6f3f723fb483c7",
+      "bytes": 62924752,
+      "url_label": "vog.raw_algs.tar.gz (Multiple sequence alignments of groups): 62,924,752 bytes, MD5 checksum f4cfddfd8d202df73c6f3f723fb483c7"
+    },
+    {
+      "name": "vfold.lca.tsv.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vfold.lca.tsv.gz",
+      "description": "Tab separated file of VOGs and the taxonomic lineage of the last common aencestor (LCA) of member genomes. Genomes with unclassified taxonomic lineages have not been used for LCA determination, which can result in VOG without lca (if all proteins of a VOG are from unclassified lineages). The numbers of genomes per VOG and LCA, as well as the total numbers of genomes in the LCA are given. Columns: GroupName|GenomesInGroupAndLCA|GenomesTotalInLCA|LastCommonAncestor_TaxonName|LastCommonAncestor_TaxonID",
+      "md5sum": "80d8768ccbc291e381870854b33d3c76",
+      "bytes": 417895,
+      "url_label": "vfold.lca.tsv.gz (Last common aencestors of groups): 417,895 bytes, MD5 checksum 80d8768ccbc291e381870854b33d3c76"
+    },
+    {
+      "name": "vogdb.functional_categories.txt",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vogdb.functional_categories.txt",
+      "description": "Text file listing the lettercodes of functional categories. These consist of X (unused in NCBI COG functional categories), followed by a lower case character indicating the functional category.",
+      "md5sum": "6b816cc49c17d0095da91bad4e7552fa",
+      "bytes": 308,
+      "url_label": "vogdb.functional_categories.txt (Lettercodes of functional categories): 308 bytes, MD5 checksum 6b816cc49c17d0095da91bad4e7552fa"
+    },
+    {
+      "name": "vfold.virusonly.tsv.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vfold.virusonly.tsv.gz",
+      "description": "Tab separated file of VOGs and their specificic occurrence in virus genomes. For this purpose the homology of all member proteins to cellular genomes from eggNOG 4.5 have been determined with three different stringencies: High stringency: blastp e-Value <=1e-04 and hits in maximal 2 cellular genomes; Medium stringency: blastp e-Value <=1e-10 and hits in maximal 3 cellular genomes; Low stringency: blastp e-Value <=1e-15 and hits in maximal 4 cellular genomes; The column Only_in_viruses has been set true if members matched not more than the maximal number of genomes at the e-Value threshold for each stringency level. Columns: GroupName|Only in viruses (high stringency)|Only in viruses (medium stringency)|Only in viruses (low stringency) 1=True; 0=False. This file is useful to extract virus-specific markers from all VOGs, based on your preferred level of stringency.",
+      "md5sum": "6fd326d322cd77707cfc2ca900904744",
+      "bytes": 87434,
+      "url_label": "vfold.virusonly.tsv.gz (Specificity if groups to Viruses): 87,434 bytes, MD5 checksum 6fd326d322cd77707cfc2ca900904744"
+    },
+    {
+      "name": "vog.lca.tsv.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vog.lca.tsv.gz",
+      "description": "Tab separated file of VOGs and the taxonomic lineage of the last common aencestor (LCA) of member genomes. Genomes with unclassified taxonomic lineages have not been used for LCA determination, which can result in VOG without lca (if all proteins of a VOG are from unclassified lineages). The numbers of genomes per VOG and LCA, as well as the total numbers of genomes in the LCA are given. Columns: GroupName|GenomesInGroupAndLCA|GenomesTotalInLCA|LastCommonAncestor_TaxonName|LastCommonAncestor_TaxonID",
+      "md5sum": "3399d27f4767387fe7420f83ebcd63af",
+      "bytes": 624426,
+      "url_label": "vog.lca.tsv.gz (Last common aencestors of groups): 624,426 bytes, MD5 checksum 3399d27f4767387fe7420f83ebcd63af"
+    },
+    {
+      "name": "vogdb.species.txt",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vogdb.species.txt",
+      "description": "Tab separated file of virus genomes used for VOG construction. Columns: species name|taxon id|source|source version",
+      "md5sum": "2bdd449c444453cd0079991bca63aa87",
+      "bytes": 825200,
+      "url_label": "vogdb.species.txt (Virus genomes used for VOG construction): 825,200 bytes, MD5 checksum 2bdd449c444453cd0079991bca63aa87"
+    },
+    {
+      "name": "vogdb.taxonomy.krona.html",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vogdb.taxonomy.krona.html",
+      "description": "Interactive chart of virus genome taxonomies.",
+      "md5sum": "08393e281c7448c95d520e178df68d0c",
+      "bytes": 7060611,
+      "url_label": "vogdb.taxonomy.krona.html (Distribution of virus genome taxonomies): 7,060,611 bytes, MD5 checksum 08393e281c7448c95d520e178df68d0c"
+    },
+    {
+      "name": "vfam.faa.tar.gz",
+      "url": "https://fileshare.csb.univie.ac.at/vog/vog237/vfam.faa.tar.gz",
+      "description": "Compressed archive of FASTA formatted files of the proteins per vogdb group.",
+      "md5sum": "b38c18d42ce67694ba39d5bc405e8235",
+      "bytes": 66163776,
+      "url_label": "vfam.faa.tar.gz (Protein sequences of groups): 66,163,776 bytes, MD5 checksum b38c18d42ce67694ba39d5bc405e8235"
+    }
+  ]
+}
