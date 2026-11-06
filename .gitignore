@@ -1,2 +1,5 @@
 .Rprofile
 .lintr
+vog237/*.sqlite
+vog237/vogs_raw/*
+vog237/vogs_select/*
