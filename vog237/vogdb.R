@@ -90,8 +90,8 @@ for (i in seq_along(unique_families)) {
    family_msa = which(vogs$Family == unique_families[i])
    if (length(family_msa) > 10) {
       for (j in seq_along(family_msa)) {
-         vog = vogs[, family_msa[j]]
-         old = paste0('vogs_raw/', vog$FileName)
+         vog = vogs[family_msa[j], ]
+         old = paste0('vogs_raw/msa/', vog$FileName)
          new = paste0('vogs_select/',
                       gsub('\\.msa', '', vog$FileName),
                       '_', vog$Family,
@@ -105,5 +105,7 @@ for (i in seq_along(unique_families)) {
 }
 
 # compress selected MSAs
-tar('vog.select_algs.tar.gz', list.files('vogs_select/'), 'gzip')
+tar('vog.select_algs.tar.gz',
+    paste0('vogs_select/', list.files('vogs_select/')),
+    'gzip')
 # items within the vogs_raw/ dir can now be deleted, not needed
