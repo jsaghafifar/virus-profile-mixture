@@ -148,7 +148,7 @@ if (length(list.files('vogs_training/')) != 0) {
 
 for (i in seq_along(families)) {
    family_msa = which(vogs_10select$Family == families[i])
-   holdout_data = sample(family_msa, round(length(family_msa) / 10))
+   holdout_data = sample(family_msa, ceiling(length(family_msa) / 10))
    training_data = family_msa[!family_msa %in% holdout_data]
    for (j in family_msa) {
       if (j %in% holdout_data) {
