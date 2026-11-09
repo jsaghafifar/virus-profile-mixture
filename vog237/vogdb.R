@@ -136,23 +136,25 @@ write.csv(vogs_10select, 'vog.10select_names.csv', row.names = FALSE)
 #     untar('vog.select_algs.tar.gz', exdir = 'vogs_select')
 # }
 
-families = unique(vogs_10select$Family)
-
+# remove previously sampled holdout/training data, if present
 if (length(list.files('vogs_holdout/')) != 0) {
     file.remove(list.files('vogs_holdout/', full.names = TRUE))
 }
-
 if (length(list.files('vogs_training/')) != 0) {
     file.remove(list.files('vogs_training/', full.names = TRUE))
 }
 
+families = unique(vogs_10select$Family)
 for (i in seq_along(families)) {
    family_msa = which(vogs_10select$Family == families[i])
+
+   # sample 10% (rounded up) from each family to ensure ≥10% holdout data
    holdout_data = sample(family_msa, ceiling(length(family_msa) / 10))
    training_data = family_msa[!family_msa %in% holdout_data]
+
    for (j in family_msa) {
       if (j %in% holdout_data) {
-        if (j %in% training_data) {
+        if (j %in% training_data) { # holdout and training not true complements
             cat('Dev: found sequence in both holdout and training lists.\n')
             break
         }
@@ -166,7 +168,7 @@ for (i in seq_along(families)) {
             vog = vogs_10select[j, ]
             file.copy(paste0('vogs_select/', vog$FileName),
                   paste0('vogs_training/', vog$FileName))
-         } else {
+         } else { # missing a sequence
             cat('Dev: found sequence in neither holdout and training lists.\n')
             break
          }
