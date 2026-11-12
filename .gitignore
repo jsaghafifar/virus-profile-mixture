@@ -5,3 +5,5 @@ vog237/vogs_holdout/*
 vog237/vogs_raw/*
 vog237/vogs_select/*
 vog237/vogs_training/*
+vog237/*.model
+vog237/results_*.csv
