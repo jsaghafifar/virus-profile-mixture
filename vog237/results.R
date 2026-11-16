@@ -5,20 +5,21 @@
 setwd('~/virus-profile-mixture/vog237')
 require(dplyr)
 require(stringr)
-filebase = 'test2_vog20' # set filebase for input+output here
+filebase = 'vog' # set filebase for input+output here
 
 # extract .gz file
 input_file = paste0(filebase, '.model')
-if (!file.exists(paste0(filebase, '.model'))) {
-    if (!file.exists(filebase, '.model.gz')) {
+if (!file.exists(input_file)) {
+    if (!file.exists(paste0(input_file, '.gz'))) {
         cat('Input file not found!\n')
         break
     }
-    untar(file.path(filebase, '.model.gz'))
+    require(R.utils)
+    gunzip(paste0(input_file, '.gz'), remove = FALSE)
 }
 
 # get indices of alignments and models in file
-res = readLines(paste0(filebase, '.model'))
+res = readLines(input_file)
 ind_aln = grep('msa\\:$', res) # finding alignments. check here if grep failing
 aln = gsub('\\.msa\\:', '', res[ind_aln])
 ind_mod = grep('C10\\:|R4\\:|G4\\:', res) # models. check here if grep failing
