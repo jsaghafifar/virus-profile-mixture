@@ -5,7 +5,7 @@
 setwd('~/virus-profile-mixture/vog237')
 require(dplyr)
 require(stringr)
-filebase = 'vog' # set filebase for input+output here
+filebase = 'test_vog' # set filebase for input+output here
 file_iqtree = 'test_vog.iqtree'
 
 # extract .gz file
@@ -33,7 +33,7 @@ ind_mix = c((ind_head + 6):(ind_head + 6 + length(ind_aln)))
 
 x = 1
 tibble = tibble()
-mix_tibble = tibble()
+mix_list = list()
 
 # grab results for each alignment
 for (i in seq_along(ind_aln)) {
@@ -54,19 +54,8 @@ for (i in seq_along(ind_aln)) {
             mix = str_split_1(res_mix[ind_mix[i]], 'MM10Q\\+FMM10pi')
             mix = gsub('\\d+\\:1:|\\,|\\}.+', '', mix[2:11])
             mix = format(as.numeric(mix), scientific = FALSE)
-            tib = tibble(Alignment = aln[i],
-                         BestModel = best_mod,
-                         MixWeight1 = mix[1], # TODO this looks awful
-                         MixWeight2 = mix[2], # TODO grab freqs for profiles too
-                         MixWeight3 = mix[3],
-                         MixWeight4 = mix[4],
-                         MixWeight5 = mix[5],
-                         MixWeight6 = mix[6],
-                         MixWeight7 = mix[7],
-                         MixWeight8 = mix[8],
-                         MixWeight9 = mix[9],
-                         MixWeight10 = mix[10])
-            mix_tibble = bind_rows(mix_tibble, tib)
+            mix_list[[best_mod]][[aln[i]]] = mix
+                                      # TODO grab freqs for profiles too
          }
       }
 
