@@ -1,6 +1,6 @@
 ###### Visualising substitution models by PCA plots
 #### Input: NEXUS file of models
-#### Output: PCA plot PNG files 
+#### Output: PCA plot PNG files
 ####         (exchangeabilities, frequencies, frequencies w/ profile-mixture)
 
 setwd('~/virus-profile-mixture/vog237')
@@ -65,23 +65,27 @@ for (model in seq_along(headers)) {
 
 # model groups for PCA
 groups = rownames(q_df)
-groups[grepl('^Q\\.', groups)] = 'qmaker'
-groups[grepl('DAYHOFF|.+CMUT|BLOSUM62|JTT|WAG|LG|PMB', groups)] = 'classic/nuclear'
+groups[grepl('^Q\\.', groups)] = 'QMaker'
+groups[grepl('DAYHOFF|.+CMUT|BLOSUM62|JTT|WAG|LG|PMB', groups)] = 'Classic'
 groups[grepl('^MT', groups)] = 'mitochondrial'
-groups[grepl('RTREV|HIV.|FLU|FLAVI|VOG', groups)] = 'viral'
+groups[grepl('RTREV|HIV.|FLU|FLAVI|VOG', groups)] = 'Viral'
 
 # square-root as scaling (TODO check if appropriate)
-q_df = sqrt(q_df)
+q_df2 = sqrt(q_df)
 
 # PCA for exchangeabilities
-q_pca = prcomp(q_df, scale = FALSE, center = TRUE)
+q_pca = prcomp(q_df2, scale = FALSE, center = TRUE)
 # fviz_eig(q_pca, addlabels = TRUE, barfill = 'steelblue',
 #          barcolor = 'steelblue', linecolor = 'firebrick',
 #          main = 'Scree Plot: Variance Explained by Component')
-q_pca_plot = fviz_pca_biplot(q_pca, geom.var = F, col.var = 'black',
-                             col.ind = as.factor(groups), palette = 'jco',
+q_pca_plot = fviz_pca_biplot(q_pca, geom.var = FALSE, col.var = 'black',
+                             col.ind = as.factor(groups),
                              repel = TRUE, legend.title = 'Model group') +
-                             theme_minimal() + 
+                             theme_minimal() +
+    theme(text = element_text(family = 'mono'),
+        plot.title = element_text(size = 16, hjust = 0.5)) +
+        scale_colour_manual(values = c('#7e57c2', '#009688', '#c77025',
+        '#000000')) +
                              labs(title = 'PCA of exchangeabilities')
 ggsave('pca_q.png', q_pca_plot, units = 'px', width = 3000, height = 3000)
 
@@ -92,7 +96,7 @@ for (i in seq_along(fmix_indices)) {
    mixture = str_split_1(file[fmix_indices[i]], ' ')
    mix_names[i] = mixture[2]
    mixture[23] = gsub(';$', '', mixture[23])
-   mixture = as.numeric(mixture[4:23])   
+   mixture = as.numeric(mixture[4:23])
    for (j in seq_along(mixture)) {
       mixture[j] = mixture[j] / sum(mixture)
    }
@@ -100,28 +104,38 @@ for (i in seq_along(fmix_indices)) {
    rownames(f_df)[nrow(f_df)] = mix_names[i]
 }
 
-f_df = sqrt(f_df)
+f_df2 = sqrt(f_df)
 # colnames(f_df) = aa
 # rownames(f_df) = c(rownames(q_data), mix_names)
-freq_groups = c(groups, rep('viral-mixtures', times = nrow(f_df) - length(groups)))
+freq_groups = c(groups,
+                rep('viral-mixtures', times = nrow(f_df2) - length(groups)))
 
-f_pca = prcomp(f_df[(1:length(groups)), ], scale = FALSE, center = TRUE)
+f_pca = prcomp(f_df2[seq_along(groups), ], scale = FALSE, center = TRUE)
 # fviz_eig(f_pca, addlabels = TRUE, barfill = 'steelblue',
 #          barcolor = 'steelblue', linecolor = 'firebrick',
 #          main = 'Scree Plot: Variance Explained by Component')
-f_pca_plot = fviz_pca_biplot(f_pca, geom.var = F, col.var = 'black',
-                             col.ind = as.factor(groups), palette = 'jco',
+f_pca_plot = fviz_pca_biplot(f_pca, geom.var = FALSE, col.var = 'black',
+                             col.ind = as.factor(groups),
                              repel = TRUE, legend.title = 'Model group') +
-                             theme_minimal() + labs(title = 'PCA of frequencies')
+                theme_minimal() +
+    theme(text = element_text(family = 'mono'),
+        plot.title = element_text(size = 16, hjust = 0.5)) +
+        scale_colour_manual(values = c('#7e57c2', '#009688', '#c77025',
+        '#000000')) +
+                labs(title = 'PCA of frequencies')
 ggsave('pca_f.png', f_pca_plot, units = 'px', width = 3000, height = 3000)
 
 fmix_pca = prcomp(f_df, scale = FALSE, center = TRUE)
 # fviz_eig(fmix_pca, addlabels = TRUE, barfill = 'steelblue',
 #          barcolor = 'steelblue', linecolor = 'firebrick',
 #          main = 'Scree Plot: Variance Explained by Component')
-fmix_pca_plot = fviz_pca_biplot(fmix_pca, geom.var = F, col.var = 'black',
-                                col.ind = as.factor(freq_groups), palette = 'jco',
+fmix_pca_plot = fviz_pca_biplot(fmix_pca, geom.var = FALSE, col.var = 'black',
+                                col.ind = as.factor(freq_groups),
                                 repel = TRUE, legend.title = 'Model group') +
-                                theme_minimal() + 
-                                labs(title = 'PCA of frequencies (incl. profile-mixtures)')
+                    theme_minimal() +
+    theme(text = element_text(family = 'mono'),
+        plot.title = element_text(size = 16, hjust = 0.5)) +
+        scale_colour_manual(values = c('#7e57c2', '#009688', '#c77025',
+        '#000000')) +
+                    labs(title = 'PCA of frequencies (incl. profile-mixtures)')
 ggsave('pca_fmix.png', fmix_pca_plot, units = 'px', width = 3000, height = 3000)
