@@ -8,3 +8,4 @@ vog237/vogs_training/*
 vog237/*.model
 vog237/results_*.csv
 vog237/*.png
+.vscode/*
