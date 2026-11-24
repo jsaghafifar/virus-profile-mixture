@@ -79,11 +79,17 @@ q_pca = prcomp(q_df2, scale = FALSE, center = TRUE)
 #          barcolor = 'steelblue', linecolor = 'firebrick',
 #          main = 'Scree Plot: Variance Explained by Component')
 q_pca_plot = fviz_pca_biplot(q_pca, geom.var = FALSE, col.var = 'black',
-                             col.ind = as.factor(groups),
-                             repel = TRUE, legend.title = 'Model group') +
+                             col.ind = as.factor(groups), labelsize = 6,
+                             font.family = 'mono', pointsize = 2,
+                             repel = TRUE,
+                             legend.title = 'Model group') +
                              theme_minimal() +
     theme(text = element_text(family = 'mono'),
-        plot.title = element_text(size = 16, hjust = 0.5)) +
+        legend.text = element_text(size = 18),
+        legend.title = element_text(size = 20),
+        axis.text = element_text(size = 16),
+        axis.title = element_text(size = 14),
+        plot.title = element_text(size = 24, hjust = 0.5)) +
         scale_colour_manual(values = c('#7e57c2', '#009688', '#c77025',
         '#000000')) +
                              labs(title = 'PCA of exchangeabilities')
@@ -108,33 +114,46 @@ f_df2 = sqrt(f_df)
 # colnames(f_df) = aa
 # rownames(f_df) = c(rownames(q_data), mix_names)
 freq_groups = c(groups,
-                rep('viral-mixtures', times = nrow(f_df2) - length(groups)))
+                rep('Viral Mixtures', times = nrow(f_df2) - length(groups)))
 
 f_pca = prcomp(f_df2[seq_along(groups), ], scale = FALSE, center = TRUE)
 # fviz_eig(f_pca, addlabels = TRUE, barfill = 'steelblue',
 #          barcolor = 'steelblue', linecolor = 'firebrick',
 #          main = 'Scree Plot: Variance Explained by Component')
 f_pca_plot = fviz_pca_biplot(f_pca, geom.var = FALSE, col.var = 'black',
-                             col.ind = as.factor(groups),
+                             col.ind = as.factor(groups), labelsize = 6,
+                             font.family = 'mono', pointsize = 2,
                              repel = TRUE, legend.title = 'Model group') +
                 theme_minimal() +
     theme(text = element_text(family = 'mono'),
-        plot.title = element_text(size = 16, hjust = 0.5)) +
+        legend.text = element_text(size = 18),
+        legend.title = element_text(size = 20),
+        axis.text = element_text(size = 16),
+        axis.title = element_text(size = 14),
+        plot.title = element_text(size = 24, hjust = 0.5)) +
         scale_colour_manual(values = c('#7e57c2', '#009688', '#c77025',
         '#000000')) +
                 labs(title = 'PCA of frequencies')
 ggsave('pca_f.png', f_pca_plot, units = 'px', width = 3000, height = 3000)
+
+rownames(f_df)[22:25] = paste0('4-', 1:4)
+rownames(f_df)[26:35] = paste0('10-', 1:10)
 
 fmix_pca = prcomp(f_df, scale = FALSE, center = TRUE)
 # fviz_eig(fmix_pca, addlabels = TRUE, barfill = 'steelblue',
 #          barcolor = 'steelblue', linecolor = 'firebrick',
 #          main = 'Scree Plot: Variance Explained by Component')
 fmix_pca_plot = fviz_pca_biplot(fmix_pca, geom.var = FALSE, col.var = 'black',
-                                col.ind = as.factor(freq_groups),
+                             col.ind = as.factor(freq_groups),
+                             font.family = 'mono', pointsize = 2,
                                 repel = TRUE, legend.title = 'Model group') +
                     theme_minimal() +
     theme(text = element_text(family = 'mono'),
-        plot.title = element_text(size = 16, hjust = 0.5)) +
+        legend.text = element_text(size = 18),
+        legend.title = element_text(size = 20),
+        axis.text = element_text(size = 16),
+        axis.title = element_text(size = 14),
+        plot.title = element_text(size = 24, hjust = 0)) +
         scale_colour_manual(values = c('#7e57c2', '#009688', '#c77025',
         '#000000')) +
                     labs(title = 'PCA of frequencies (incl. profile-mixtures)')

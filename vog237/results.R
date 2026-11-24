@@ -137,7 +137,7 @@ plot = ggplot(mm10, aes(Alignment, as.factor(Component))) +
    facet_grid(cols = vars(Family), scales = 'free_x',
               space = 'free_x', switch = 'x') +
    theme(strip.text.x = element_text(angle = 90),
-         text = element_text(family = 'mono')) +
+         text = element_text(family = 'mono', size = 20)) +
    scale_fill_gradient(breaks = c(0, 0.2, 0.4, 0.6, 0.8, 1.0),
                        limits = c(0, 1), low = '#f3f3f3', high = '#5e2b97')
 ggsave('tmp.png', plot, units = 'px', width = 6000, height = 3000)
